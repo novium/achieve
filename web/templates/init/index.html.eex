@@ -1,0 +1,47 @@
+<p>Du kan välja mellan att antingen lägga in alla achievements i ett redan existerande repo
+eller låta mig skapa ett nytt. Jag rekommenderar VERKLIGEN det andra alternativet
+eftersom det är enkelt att bara ta bort ett repo som är "tomt".</p>
+
+<h1 style="color: darkgreen">Det säkra alternativet:</h1>
+<b>LÄS DETTA INNAN DU FORTSÄTTER</b>
+<p>Det här kommer att skapa repositoryt "achievements" på <em>ditt</em> GitHub konto</p>
+<p><b>Eftersom jag dessutom är lat så ber jag dig att trycka på länken EN gång</b>, om det inte funkar kontakta mig på mail@novium.pw</p>
+<br><br>
+<script>
+  function toggle() {
+    if(document.getElementById("terms").checked) {
+      document.getElementById("next").href = "/init/do/new"
+    } else {
+      document.getElementById("next").href = "#"
+    }
+  }
+</script>
+<input onClick="toggle()" type="checkbox" id="terms">
+<label for="terms">Jag har läst och gått med på villkåren</label><br>
+
+<a id="next" href="#" style="font-size: 16px">=> fortsätt</a>
+
+<br>
+<br>
+<br>
+<hr>
+<p style="color: darkred; font-size: 32px;">ALLT NEDAN GÖRS PÅ EGEN RISK</p>
+<hr>
+<p>Du har <b>ADMIN</b> access till följande repositories</p>
+<p>Till vilket vill du lägga till achievements till?</p>
+<p style="color: darkred; font-size: 24px;"><b>VARNING: Detta är en <i>IRREVERSIBEL</i> operation</b></p>
+<p>Dvs. du kommer inte ha det särskilt lätt att få bort de achievements som skapats efter att ha lagt till dem!</p>
+<p>För att vara ärlig så finns det även en liten chans att något blir fel, kontakta gärna mig (mail@novium.pw) så kan jag försöka rätta till det så gott jag kan</p>
+
+<ul>
+<%= for repo <- @repos do %>
+  <%= if Map.fetch!(repo, "permissions") == %{"admin" => true, "push" => true, "pull" => true} do %>
+    <li></li>
+    <li><%= Map.fetch!(repo, "name") %> <a href='/init/do/<%= Map.fetch!(Map.fetch!(repo, "owner"), "login") %>/<%= Map.fetch!(repo, "name") %>'>KÖR!</a></li>
+  <% end %>
+<% end %>
+</ul>
+
+<br><br><br><br>
+<p>Villkor-ish</p>
+<p style="color: darkgrey; font-size: 9px;">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
